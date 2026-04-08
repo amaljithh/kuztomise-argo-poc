@@ -5,7 +5,6 @@ namespace: myapp-qa
 
 resources:
   - ../../base
-  - argocd-application.yaml
 
 namePrefix: qa-
 
