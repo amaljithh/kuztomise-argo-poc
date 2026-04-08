@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/kyndryl-cto/poc-argocd-canary.git
+    repoURL: https://github.com/amaljithh/kuztomise-argo-poc.git
     targetRevision: HEAD
     path: app-of-apps
   destination:
