@@ -4,7 +4,7 @@ metadata:
   name: kargo-pipeline
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "1"  # after kargo is installed (wave -1) and apps (wave 0)
+    argocd.argoproj.io/sync-wave: "1"  
 spec:
   project: default
   source:
