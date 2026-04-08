@@ -4,7 +4,7 @@ metadata:
   name: cluster-infra
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "-1"  # Install before app workloads (wave 0)
+    argocd.argoproj.io/sync-wave: "-2"
 spec:
   project: default
   source:
