@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: blue-green-check
+  namespace: myapp-ns
+spec:
+  metrics:
+    - name: page-color
+      interval: 5s
+      count: 3
+      provider:
+        web:
+          url: http://rollout-ngnix-preview.myapp-ns.svc.cluster.local/
+          method: GET
+      successCondition: result[0] contains "Welcome" || result[0] contains "Green Page"
+      failureCondition: result[0] not contains "Blue Page" && result[0] not contains "Green Page"
