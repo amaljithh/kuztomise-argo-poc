@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: nginx
+  namespace: myapp-ns
+  labels:
+    app: nginx
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx-chart
+          image: amaljithh/green-page:v1
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+  strategy:
+    canary:
+      canaryService: rollout-ngnix-preview
+      stableService: rollout-ngnix-active
+      steps:
+        - setWeight: 25
+        - pause: {duration: 5}
+        - analysis:
+            templates:
+              - templateName: blue-green-check
+        - setWeight: 50
+        - pause: {duration: 10}
+        - setWeight: 75
+        - pause: {duration: 10}
+        - setWeight: 100
