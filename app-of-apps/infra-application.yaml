@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-infra
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"  # Install before app workloads (wave 0)
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/amaljithh/kuztomise-argo-poc.git
+    targetRevision: HEAD
+    path: infra
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
