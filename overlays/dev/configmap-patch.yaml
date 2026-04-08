@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-index-html-configmap
+  namespace: myapp-dev
+data:
+  index.html: |
+    <html>
+    <h1>Welcome</h1>
+    </br>
+    <h1>Hi! I got deployed in DEV using Argo Rollouts</h1>
+    </html>
