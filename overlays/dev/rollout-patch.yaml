@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: nginx-chart
-          image: amaljithh/green-page:v1
+          image: nginx:latest
   strategy:
     canary:
       steps:
